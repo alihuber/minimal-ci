@@ -1,0 +1,29 @@
+%form{:name => "input", :action => "/start_build", :method => "post"}
+  %input{:type => "text", :name => "url"}
+  %input{:type => "submit"}
+
+%h1
+  Builds
+
+%table
+  %thead
+    %tr
+      %td
+        Build id
+      %td
+        Date
+      %td
+        Output
+      %td
+        passed?
+    - @builds.each do |build|
+      %tr
+        %td
+          = build.id
+        %td
+          = build.date
+        %td
+          %a{:href => "/build/#{build.id}"}
+            See output
+        %td
+          = build.passed
